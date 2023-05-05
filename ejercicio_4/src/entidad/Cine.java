@@ -1,59 +1,66 @@
-/*
-    Un cine necesita implementar un sistema en el que se puedan cargar peliculas. Para esto,
-    tendremos una clase Pelicula con el título, director y duración de la película (en horas).
-    Implemente las clases y métodos necesarios para esta situación, teniendo en cuenta lo
-    que se pide a continuación:
-    En el servicio deberemos tener un bucle que crea un objeto Pelicula pidiéndole al usuario
-    todos sus datos y guardándolos en el objeto Pelicula.
-    Después, esa Pelicula se guarda una lista de Peliculas y se le pregunta al usuario si quiere
-    crear otra Pelicula o no.
-    Después de ese bucle realizaremos las siguientes acciones:
-    • Mostrar en pantalla todas las películas.
-    • Mostrar en pantalla todas las películas con una duración mayor a 1 hora.
-    • Ordenar las películas de acuerdo a su duración (de mayor a menor) y mostrarlo en
-    pantalla.
-    • Ordenar las películas de acuerdo a su duración (de menor a mayor) y mostrarlo en
-    pantalla.
-    • Ordenar las películas por título, alfabéticamente y mostrarlo en pantalla.
-    • Ordenar las películas por director, alfabéticamente y mostrarlo en pantalla.
-*/
 package entidad;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Cine {
-    //Atributos
+    //Atributo
     private ArrayList<Pelicula> catalogo;
     
     //Constructor
     public Cine(){
         this.catalogo = new ArrayList<>();
     }
-    
+
     //Métodos
     public void agregarPelicula(Pelicula pelicula){
         this.catalogo.add(pelicula);
     }
     
+    public int cantidadPeliculas(){
+        return this.catalogo.size();
+    }
+    
     public void mostrarPeliculas(){
-        for (Pelicula pelicula : catalogo) {
-            System.out.println(pelicula.getTitulo());
+        for (Pelicula pelicula : this.catalogo) {
+            System.out.println(pelicula);
         }
     }
     
-    public void mostrarPeliculasMayorAUnaHora(){
-        for (Pelicula pelicula : catalogo) {
-            if(pelicula.getDuracion() > 60){
-                System.out.println(pelicula.getTitulo());
+    public void mostrarPeliculas(int duracion){
+        for (Pelicula pelicula : this.catalogo) {
+            if(pelicula.getDuracion() > duracion){
+                System.out.println(pelicula);
             }
         }
     }
     
-    public void mostrarPeliculasMayorADosHoras(){
-        for (Pelicula pelicula : catalogo) {
-            if(pelicula.getDuracion() > 120){
-                System.out.println(pelicula.getTitulo());
-            }
+    public void ordenarPeliculasPorDuracionAscendente(){
+        Collections.sort(this.catalogo, new OrdenarPeliculaDuracionAscendente());
+        for (Pelicula pelicula : this.catalogo) {
+            System.out.println(pelicula);
         }
     }
+    
+    public void ordenarPeliculasPorDuracionDescendente(){
+        Collections.sort(this.catalogo, new OrdenarPeliculaDuracionDescendente());
+        for (Pelicula pelicula : this.catalogo) {
+            System.out.println(pelicula);
+        }
+    }
+    
+    public void ordenarPeliculaPorTitulo(){
+        Collections.sort(this.catalogo, new OrdenarPeliculaPorTitulo());
+        for (Pelicula pelicula : this.catalogo) {
+            System.out.println(pelicula);
+        }
+    }
+    
+    public void ordenarPeliculaPorDirector(){
+        Collections.sort(this.catalogo, new OrdenarPeliculaPorDirector());
+        for (Pelicula pelicula : this.catalogo) {
+            System.out.println(pelicula);
+        }
+    }
+    
 }
