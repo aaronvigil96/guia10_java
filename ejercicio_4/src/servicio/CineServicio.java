@@ -9,14 +9,16 @@ public class CineServicio {
         Cine catalogo = new Cine();
         PeliculaServicio ps = new PeliculaServicio();
         int opcion;
+        
         System.out.println("Bievenido a TuCine");
         do{
             System.out.println("1)- Crear Pelicula");
             System.out.println("2)- Mostrar Peliculas");
-            System.out.println("3)- Mostrar y ordenar de acuerdo a su duracion (Asc)");
-            System.out.println("4)- Mostrar y ordenar de acuerdo a su duracion (Desc)");
-            System.out.println("5)- Mostrar y ordenar por titulo");
-            System.out.println("6)- Mostrar y ordenar por director");
+            System.out.println("3)- Mostrar Peliculas mayor a ...");
+            System.out.println("4)- Mostrar y ordenar de acuerdo a su duracion (Asc)");
+            System.out.println("5)- Mostrar y ordenar de acuerdo a su duracion (Desc)");
+            System.out.println("6)- Mostrar y ordenar por titulo");
+            System.out.println("7)- Mostrar y ordenar por director");
             System.out.println("0)- Salir");
             opcion = entrada.nextInt();
             entrada.nextLine();
@@ -26,22 +28,52 @@ public class CineServicio {
                     break;
                 }
                 case 2: {
+                    if(catalogo.cantidadPeliculas() == 0){
+                        System.out.println("Primero debería agregar alguna pelicula");
+                        break;
+                    }
                     catalogo.mostrarPeliculas();
                     break;
                 }
                 case 3: {
-                    catalogo.ordenarPeliculasPorDuracionAscendente();
+                    if(catalogo.cantidadPeliculas() == 0){
+                        System.out.println("Primero debería agregar alguna pelicula");
+                        break;
+                    }
+                    System.out.println("¿Mayor a qué duración?");
+                    catalogo.mostrarPeliculasMayorA(entrada.nextInt());
+                    entrada.nextLine();
                     break;
                 }
                 case 4: {
-                    catalogo.ordenarPeliculasPorDuracionDescendente();
+                    if(catalogo.cantidadPeliculas() == 0){
+                        System.out.println("Primero debería agregar alguna pelicula");
+                        break;
+                    }
+                    catalogo.ordenarPeliculasPorDuracionAscendente();
                     break;
                 }
                 case 5: {
-                    catalogo.ordenarPeliculaPorTitulo();
+                    if(catalogo.cantidadPeliculas() == 0){
+                        System.out.println("Primero debería agregar alguna pelicula");
+                        break;
+                    }
+                    catalogo.ordenarPeliculasPorDuracionDescendente();
                     break;
                 }
                 case 6: {
+                    if(catalogo.cantidadPeliculas() == 0){
+                        System.out.println("Primero debería agregar alguna pelicula");
+                        break;
+                    }
+                    catalogo.ordenarPeliculaPorTitulo();
+                    break;
+                }
+                case 7: {
+                    if(catalogo.cantidadPeliculas() == 0){
+                        System.out.println("Primero debería agregar alguna pelicula");
+                        break;
+                    }
                     catalogo.ordenarPeliculaPorDirector();
                     break;
                 }
@@ -50,6 +82,5 @@ public class CineServicio {
                 }
             }
         }while(opcion != 0);
-        
     }
 }

@@ -27,7 +27,7 @@ public class Cine {
         }
     }
     
-    public void mostrarPeliculas(int duracion){
+    public void mostrarPeliculasMayorA(int duracion){
         for (Pelicula pelicula : this.catalogo) {
             if(pelicula.getDuracion() > duracion){
                 System.out.println(pelicula);
