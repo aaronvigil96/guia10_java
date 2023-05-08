@@ -10,12 +10,45 @@
 package ejercicio_6;
 
 import entidad.Almacen;
+import java.util.Scanner;
 import servicio.AlmacenServicio;
 
 public class Ejercicio_6 {
     public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
         AlmacenServicio as = new AlmacenServicio();
         Almacen almacen = as.crearAlmacen();
+        int opcion;
+        
+        System.out.println("Bienvenido a TuTienda");
+        do{
+            System.out.println("1)- Agregar Producto");
+            System.out.println("2)- Modificar Precio Producto");
+            System.out.println("3)- Eliminar producto");
+            System.out.println("4)- Mostrar productos");
+            System.out.println("0)- Salir");
+            
+            opcion = entrada.nextInt();
+            entrada.nextLine();
+            switch(opcion){
+                case 1: {
+                    as.ingresarProducto(almacen);
+                    break;
+                }
+                case 2: {
+                    as.modificarPrecio(almacen);
+                    break;
+                }
+                case 3: {
+                    as.eliminarProducto(almacen);
+                    break;
+                }
+                case 4: {
+                    as.mostrarProductos(almacen);
+                    break;
+                }
+            }
+        }while(opcion != 0);
     }
     
 }
